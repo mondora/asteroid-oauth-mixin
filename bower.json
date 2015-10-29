@@ -1,12 +1,12 @@
 {
   "name": "asteroid-oauth",
   "version": "1.0.0",
-  "homepage": "https://github.com/mondora/asteroid-oauth",
+  "homepage": "https://github.com/mondora/asteroid-oauth-mixin",
   "authors": [
     "Davide Bianchi <davide.bianchi@mondora.com>"
   ],
   "description": "Login with oauth in asteroid",
-  "main": "dist/asteroid-oauth.js",
+  "main": "dist/asteroid-oauth-mixin.js",
   "moduleType": [
     "amd",
     "globals",
