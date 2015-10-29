@@ -19,7 +19,7 @@ var build = function (minify, callback) {
             libraryTarget: "umd",
             library: "AsteroidOauthMixin",
             path: path.join(__dirname, "/dist"),
-            filename: (minify ? "asteroid-oauth-mixin.min.js" : "asteroid-ouath-mixin.js")
+            filename: (minify ? "asteroid-oauth-mixin.min.js" : "asteroid-oauth-mixin.js")
         },
         plugins: minify ? [
             new webpack.optimize.UglifyJsPlugin({
