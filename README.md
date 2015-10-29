@@ -1,6 +1,34 @@
 [![Build Status](https://travis-ci.org/mondora/asteroid-oauth.svg?branch=master)](https://travis-ci.org/mondora/asteroid-oauth)
-[![Coverage Status](https://coveralls.io/repos/mondora/asteroid-oauth/badge.png)](https://coveralls.io/r/mondora/asteroid-oauth)
+[![Coverage Status](https://coveralls.io/repos/mondora/asteroid-oauth/badge.svg?branch=master&service=github)](https://coveralls.io/github/mondora/asteroid-oauth?branch=master)
 
-#asteroid-oauth
+# asteroid-oauth-mixin
 
-A mixin for oauth in Asteroid.
+An OAuth mixin for Asteroid.
+
+## Install
+
+### In node
+
+Download the package:
+
+    npm install asteroid-oauth
+
+## Example usage
+
+```js
+import {createClass} from "asteroid";
+import * as asteroidOauthMixin from "asteroid-oauth";
+
+const Asteroid = createClass([asteroidOauthMixin]);
+
+const asteroid = new Asteroid({/* ... */});
+
+/*
+*   Somewhere in your code
+*/
+
+asteroid.loginWith("google")
+    .then(() => console.log("login successful"))
+    .catch(() => console.log("error logging in"))
+
+```

@@ -1,8 +1,10 @@
 import urlParse from "url-parse";
 
 import openOauthPopup from "./lib/open-oauth-popup";
+// TODO implement some other common providers such as facebook and twitter
+import * as google from "./providers/google";
 
-const providers = {};
+const providers = {google};
 
 export function init ({endpoint, platform}) {
     this.oauth = {
@@ -14,12 +16,6 @@ export function init ({endpoint, platform}) {
 export function registerOauthProvider (provider) {
     providers[provider.name] = provider;
 }
-
-// import * as googleProvider from "asteroid-oauth";
-// googleProvider.registerOauthProvider({
-//     name: "google",
-//     getOptions: getGoogleOauthOptions
-// });
 
 const configCollectionName = "meteor_accounts_loginServiceConfiguration";
 
