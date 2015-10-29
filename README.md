@@ -11,13 +11,13 @@ An OAuth mixin for Asteroid.
 
 Download the package:
 
-    npm install asteroid-oauth
+    npm install asteroid-oauth-mixin
 
 ## Example usage
 
 ```js
 import {createClass} from "asteroid";
-import * as asteroidOauthMixin from "asteroid-oauth";
+import * as asteroidOauthMixin from "asteroid-oauth-mixin";
 
 const Asteroid = createClass([asteroidOauthMixin]);
 
