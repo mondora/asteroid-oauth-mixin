@@ -2,7 +2,7 @@
   "name": "asteroid-oauth-mixin",
   "version": "1.0.3",
   "description": "Login with OAuth in asteroid",
-  "main": "dist/asteroid-oauth.js",
+  "main": "dist/asteroid-oauth-mixin.js",
   "scripts": {
     "prepublish": "gulp build",
     "build": "gulp build",
