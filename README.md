@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/mondora/asteroid-oauth.svg?branch=master)](https://travis-ci.org/mondora/asteroid-oauth)
-[![Coverage Status](https://coveralls.io/repos/mondora/asteroid-oauth/badge.svg?branch=master&service=github)](https://coveralls.io/github/mondora/asteroid-oauth?branch=master)
+[![Build Status](https://travis-ci.org/mondora/asteroid-oauth-mixin.svg?branch=master)](https://travis-ci.org/mondora/asteroid-oauth-mixin)
+[![Coverage Status](https://coveralls.io/repos/mondora/asteroid-oauth-mixin/badge.svg?branch=master&service=github)](https://coveralls.io/github/mondora/asteroid-oauth-mixin?branch=master)
 
 # asteroid-oauth-mixin
 
