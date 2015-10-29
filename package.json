@@ -1,5 +1,5 @@
 {
-  "name": "asteroid-oauth",
+  "name": "asteroid-oauth-mixin",
   "version": "1.0.1",
   "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mondora/asteroid-oauth.git"
+    "url": "https://github.com/mondora/asteroid-oauth-mixin.git"
   },
   "keywords": [
     "ddp",
@@ -23,9 +23,9 @@
   "author": "Davide Bianchi <davide.bianchi@mondora.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mondora/asteroid-oauth/issues"
+    "url": "https://github.com/mondora/asteroid-oauth-mixin/issues"
   },
-  "homepage": "https://github.com/mondora/asteroid-oauth",
+  "homepage": "https://github.com/mondora/asteroid-oauth-mixin",
   "devDependencies": {
     "babel": "^5.8.29",
     "babel-core": "^5.8.29",
