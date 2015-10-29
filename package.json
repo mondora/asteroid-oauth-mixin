@@ -1,7 +1,7 @@
 {
   "name": "asteroid-oauth",
   "version": "1.0.0",
-  "description": "Login with Oauth in asteroid",
+  "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth.js",
   "scripts": {
     "build": "gulp build",
