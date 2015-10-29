@@ -1,6 +1,6 @@
 {
   "name": "asteroid-oauth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth.js",
   "scripts": {
