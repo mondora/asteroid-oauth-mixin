@@ -1,0 +1,126 @@
+import chai, {expect} from "chai";
+import sinon from "sinon";
+import sinonChai from "sinon-chai";
+
+chai.use(sinonChai);
+
+import * as asteroidOauth from "asteroid-oauth";
+
+describe("`asteroid-oauth` mixin", function () {
+
+    describe("the `init` method", function () {
+
+        it("should set the `oauth` property with the correct parameter", function () {
+            const options = {
+                endpoint: "http://test.com:8080/test",
+                platform: "platform"
+            };
+            const instance = {};
+            asteroidOauth.init.call(instance, options);
+            expect(instance.oauth.platform).to.equal("platform");
+            expect(instance.oauth.url.host).to.equal("test.com:8080");
+            expect(instance.oauth.url).to.be.an("object");
+        });
+
+    });
+
+    describe("the `registerOauthProvider` method", function () {
+
+        const providers = {};
+
+        before(function () {
+            asteroidOauth.__Rewire__("providers", providers);
+        });
+
+        after(function () {
+            asteroidOauth.__ResetDependency__("providers");
+        });
+
+        it("should set the providers", function () {
+            const options = {
+                name: "provider",
+                getOptions: {}
+            };
+            asteroidOauth.registerOauthProvider(options);
+            expect(providers.provider).to.deep.equal({name: "provider", getOptions: {}});
+        });
+
+    });
+
+    describe("the `loginWith` method", function () {
+
+        const configCollectionName = "configCollectionName";
+        const providers = {
+            provider: {
+                name: "provider",
+                getOptions: sinon.stub().returns({credentialToken: "credentialToken", loginUrl: "loginUrl"})
+            }
+        };
+        const openOauthPopup = sinon.spy();
+
+        beforeEach(function () {
+            asteroidOauth.__Rewire__("configCollectionName", configCollectionName);
+            openOauthPopup.reset();
+            asteroidOauth.__Rewire__("openOauthPopup", openOauthPopup);
+            providers.provider.getOptions.reset();
+            asteroidOauth.__Rewire__("providers", providers);
+        });
+
+        afterEach(function () {
+            asteroidOauth.__ResetDependency__("configCollectionName");
+            asteroidOauth.__ResetDependency__("openOauthPopup");
+            asteroidOauth.__ResetDependency__("providers");
+        });
+
+        it("should call the `getOptions` function with the correct parameters", function () {
+            const instance = {
+                oauth: {
+                    url: {}
+                },
+                collections: {
+                    get: sinon.stub().returns({collection: "collection"})
+                }
+            };
+            asteroidOauth.loginWith.call(instance, "provider", {scope: "scope"});
+            expect(providers.provider.getOptions).to.have.callCount(1);
+            expect(providers.provider.getOptions).to.have.been.calledWith({
+                url: {},
+                configCollection: {collection: "collection"},
+                scope: {scope: "scope"}
+            });
+        });
+
+        it("should call the `openOauthPopup` function with the correct parameters", function () {
+            const instance = {
+                oauth: {
+                    url: {
+                        host: "host"
+                    },
+                    platform: "platform"
+                },
+                collections: {
+                    get: sinon.stub().returns({})
+                },
+                login: sinon.spy()
+            };
+            asteroidOauth.loginWith.call(instance, "provider", {});
+            expect(openOauthPopup).to.have.callCount(1);
+            expect(openOauthPopup).to.have.been.calledWithMatch(
+                "platform",
+                "host",
+                "credentialToken",
+                "loginUrl",
+                sinon.match.func
+            );
+            openOauthPopup.getCall(0).args[4]({token: "token"});
+            expect(instance.login).to.have.callCount(1);
+            expect(instance.login).to.have.been.calledWith({
+                oauth: {
+                    token: "token"
+                }
+            });
+        });
+
+    });
+
+});
