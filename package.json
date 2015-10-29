@@ -4,6 +4,7 @@
   "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth.js",
   "scripts": {
+    "prepublish": "gulp build",
     "build": "gulp build",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "dev": "gulp",
