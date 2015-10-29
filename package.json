@@ -1,6 +1,6 @@
 {
   "name": "asteroid-oauth-mixin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth-mixin.js",
   "scripts": {
