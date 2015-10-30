@@ -1,3 +1,5 @@
+import parse from "url-parse";
+
 export default class BrowserOauthFlow {
 
     constructor ({credentialToken, host, loginUrl}) {
@@ -27,7 +29,7 @@ export default class BrowserOauthFlow {
     _onMessage ({data, origin}) {
         try {
             const message = JSON.parse(data);
-            if (origin !== this.host) {
+            if (parse(origin).host !== this.host) {
                 return;
             }
             if (message.credentialToken === this.credentialToken) {
@@ -40,7 +42,12 @@ export default class BrowserOauthFlow {
                 this._rejectPromise(message.error);
             }
         } catch (ignore) {
-            // ignore
+            /*
+            *   Simply ignore messages that:
+            *       - are not JSON strings
+            *       - don't match our `host`
+            *       - dont't match our `credentialToken`
+            */
         }
     }
 

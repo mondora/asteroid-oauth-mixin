@@ -11,7 +11,14 @@ export function getOptions ({url, configCollection, scope}) {
     const credentialToken = generateCredentialToken();
     const {protocol, host} = url;
     const query = {
-        "response_type": "token",
+        /*
+        *   `response_type` determines how the callback url is formed by the
+        *   google oauth service:
+        *       - `code` -> put the parameters in the querystring
+        *       - `token` -> put the parameters in the fragment
+        *   Meteor currently only supports a `code` response type
+        */
+        "response_type": "code",
         "client_id": getOauthClientId(configCollection, "google"),
         "redirect_uri": getOauthProtocol(protocol) + `//${host}/_oauth/google`,
         "state": getOauthState(credentialToken),

@@ -95,7 +95,7 @@ describe("`google` providers", function () {
             const ret = googleOauth.getOptions(options);
             expect(ret).to.deep.equal({
                 credentialToken: "credentialToken",
-                loginUrl: "https://accounts.google.com/o/oauth2/auth?response_type=token&client_id=clientId&redirect_uri=protocol%3A%2F%2Fhost%2F_oauth%2Fgoogle&state=state&scope=openid%20email"
+                loginUrl: "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=clientId&redirect_uri=protocol%3A%2F%2Fhost%2F_oauth%2Fgoogle&state=state&scope=openid%20email"
             });
         });
 

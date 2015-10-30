@@ -112,10 +112,42 @@ describe("`browser` platform class", function () {
 
     describe("`_onMessage` private method", function () {
 
-        it("shouldn't call `_resolvePromise` if `origin` is different from `host` in instance", function () {
+        it("shouldn't call `_resolvePromise` if `origin` has a different host than our instance", function () {
             const onMessageOptions = {
                 data: `{"credentialToken":"credentialToken","credentialSecret":"credentialSecret"}`,
-                origin: "host1"
+                origin: "http://remotehost:3000"
+            };
+            const instance = {
+                credentialToken: "credentialToken",
+                host: "localhost:3000",
+                _resolvePromise: sinon.spy(),
+                _rejectPromise: sinon.spy()
+            };
+            browserOauthFlow._onMessage.call(instance, onMessageOptions);
+            expect(instance._resolvePromise).to.have.callCount(0);
+            expect(instance._rejectPromise).to.have.callCount(0);
+        });
+
+        it("should call `_resolvePromise` if `origin` has the same host of our instance", function () {
+            const onMessageOptions = {
+                data: `{"credentialToken":"credentialToken","credentialSecret":"credentialSecret"}`,
+                origin: "http://localhost:3000"
+            };
+            const instance = {
+                credentialToken: "credentialToken",
+                host: "localhost:3000",
+                _resolvePromise: sinon.spy(),
+                _rejectPromise: sinon.spy()
+            };
+            browserOauthFlow._onMessage.call(instance, onMessageOptions);
+            expect(instance._resolvePromise).to.have.callCount(1);
+            expect(instance._rejectPromise).to.have.callCount(0);
+        });
+
+        it("shouldn't call `_resolvePromise` if `credentialToken` in message is different from `credentialToken` in instance", function () {
+            const onMessageOptions = {
+                data: `{"credentialToken":"differentCredentialToken","credentialSecret":"credentialSecret"}`,
+                origin: "host"
             };
             const instance = {
                 credentialToken: "credentialToken",
