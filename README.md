@@ -21,7 +21,7 @@ import * as asteroidOauthMixin from "asteroid-oauth-mixin";
 
 const Asteroid = createClass([asteroidOauthMixin]);
 
-const asteroid = new Asteroid({/* ... */});
+const asteroid = new Asteroid({platform, endpoint});
 
 /*
 *   Somewhere in your code

@@ -15,11 +15,26 @@ describe("`asteroid-oauth` mixin", function () {
                 endpoint: "http://test.com:8080/test",
                 platform: "platform"
             };
-            const instance = {};
+            const instance = {
+                subscribe: sinon.spy()
+            };
             asteroidOauth.init.call(instance, options);
             expect(instance.oauth.platform).to.equal("platform");
             expect(instance.oauth.url.host).to.equal("test.com:8080");
             expect(instance.oauth.url).to.be.an("object");
+        });
+
+        it("should call the `subscribe` function with the correct parameter", function () {
+            const options = {
+                endpoint: "http://test.com:8080/test",
+                platform: "platform"
+            };
+            const instance = {
+                subscribe: sinon.spy()
+            };
+            asteroidOauth.init.call(instance, options);
+            expect(instance.subscribe).to.have.callCount(1);
+            expect(instance.subscribe).to.have.been.calledWith("meteor.loginServiceConfiguration");
         });
 
     });

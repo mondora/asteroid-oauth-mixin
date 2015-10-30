@@ -3,6 +3,7 @@ import parse from "url-parse";
 import generateCredentialToken from "../lib/generate-credential-token";
 import getOauthState from "../lib/get-oauth-state";
 import getOauthClientId from "../lib/get-oauth-client-id";
+import getOauthProtocol from "../lib/get-oauth-protocol";
 
 export const name = "google";
 
@@ -12,7 +13,7 @@ export function getOptions ({url, configCollection, scope}) {
     const query = {
         "response_type": "token",
         "client_id": getOauthClientId(configCollection, "google"),
-        "redirect_uri": `${protocol}//${host}/_oauth/google`,
+        "redirect_uri": getOauthProtocol(protocol) + `//${host}/_oauth/google`,
         "state": getOauthState(credentialToken),
         "scope": scope || "openid email"
     };

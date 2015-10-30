@@ -7,6 +7,7 @@ import * as google from "./providers/google";
 const providers = {google};
 
 export function init ({endpoint, platform}) {
+    this.subscribe("meteor.loginServiceConfiguration");
     this.oauth = {
         platform,
         url: urlParse(endpoint)

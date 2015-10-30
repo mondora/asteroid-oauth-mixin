@@ -12,7 +12,7 @@ describe("`getOauthClientId` lib", function () {
         const configCollection = {
             find: sinon.stub().returns({
                 clientId: "clientId",
-                get: sinon.stub().returns({clientId: "clientId"})
+                get: sinon.stub().returns("clientId")
             })
         };
         const ret = getOauthClientId(configCollection, "serviceName");
@@ -23,7 +23,7 @@ describe("`getOauthClientId` lib", function () {
         const configCollection = {
             find: sinon.stub().returns({
                 consumerKey: "consumerKey",
-                get: sinon.stub().returns({consumerKey: "consumerKey"})
+                get: sinon.stub().returns("consumerKey")
             })
         };
         const ret = getOauthClientId(configCollection, "serviceName");
@@ -34,7 +34,7 @@ describe("`getOauthClientId` lib", function () {
         const configCollection = {
             find: sinon.stub().returns({
                 appId: "appId",
-                get: sinon.stub().returns({appId: "appId"})
+                get: sinon.stub().returns("appId")
             })
         };
         const ret = getOauthClientId(configCollection, "serviceName");

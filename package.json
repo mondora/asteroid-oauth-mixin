@@ -1,6 +1,6 @@
 {
   "name": "asteroid-oauth-mixin",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Login with OAuth in asteroid",
   "main": "dist/asteroid-oauth-mixin.js",
   "scripts": {
@@ -49,7 +49,6 @@
     "webpack": "^1.12.2"
   },
   "dependencies": {
-    "promiz": "^1.0.4",
     "url-parse": "^1.0.4"
   }
 }

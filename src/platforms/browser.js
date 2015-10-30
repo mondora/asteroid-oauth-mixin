@@ -1,5 +1,3 @@
-import Promise from "promiz";
-
 export default class BrowserOauthFlow {
 
     constructor ({credentialToken, host, loginUrl}) {

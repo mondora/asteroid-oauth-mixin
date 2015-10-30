@@ -1,5 +1,4 @@
 import chai, {expect} from "chai";
-import Promise from "promiz";
 import sinon from "sinon";
 import sinonChai from "sinon-chai";
 
