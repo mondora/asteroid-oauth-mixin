@@ -18,12 +18,12 @@ export function registerOauthProvider (provider) {
     providers[provider.name] = provider;
 }
 
-const configCollectionName = "meteor_accounts_loginServiceConfiguration";
-
 export function loginWith (providerName, scope) {
     const options = providers[providerName].getOptions({
         url: this.oauth.url,
-        configCollection: this.collections.get(configCollectionName),
+        // The mixin which implements collections must also implement the
+        // getServiceConfig method
+        configCollection: this.getServiceConfig(providerName),
         scope
     });
     return openOauthPopup(

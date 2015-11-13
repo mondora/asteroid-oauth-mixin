@@ -292,16 +292,15 @@ describe("`browser` platform class", function () {
                 });
         });
 
-        it("should return return `credentialSecret`", function () {
+        it("should return `credentialSecret`", function () {
             instance._credentialSecretPromise = Promise.resolve("credentialSecret");
             browserOauthFlow.init.call(instance);
             return instance._credentialSecretPromise
                 .then(function (credentialSecret) {
-                    expect(credentialSecret).to.equal("credentialSecret")
+                    expect(credentialSecret).to.equal("credentialSecret");
                 });
         });
 
-        // TODO: promise should return oauth secret.
     });
 
 });

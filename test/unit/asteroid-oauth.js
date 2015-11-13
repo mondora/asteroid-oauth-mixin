@@ -64,17 +64,16 @@ describe("`asteroid-oauth` mixin", function () {
 
     describe("the `loginWith` method", function () {
 
-        const configCollectionName = "configCollectionName";
         const providers = {
             provider: {
                 name: "provider",
                 getOptions: sinon.stub().returns({credentialToken: "credentialToken", loginUrl: "loginUrl"})
             }
         };
+        const providerName = "provider";
         const openOauthPopup = sinon.spy();
 
         beforeEach(function () {
-            asteroidOauth.__Rewire__("configCollectionName", configCollectionName);
             openOauthPopup.reset();
             asteroidOauth.__Rewire__("openOauthPopup", openOauthPopup);
             providers.provider.getOptions.reset();
@@ -82,7 +81,6 @@ describe("`asteroid-oauth` mixin", function () {
         });
 
         afterEach(function () {
-            asteroidOauth.__ResetDependency__("configCollectionName");
             asteroidOauth.__ResetDependency__("openOauthPopup");
             asteroidOauth.__ResetDependency__("providers");
         });
@@ -92,15 +90,13 @@ describe("`asteroid-oauth` mixin", function () {
                 oauth: {
                     url: {}
                 },
-                collections: {
-                    get: sinon.stub().returns({collection: "collection"})
-                }
+                getServiceConfig: sinon.spy()
             };
-            asteroidOauth.loginWith.call(instance, "provider", {scope: "scope"});
+            asteroidOauth.loginWith.call(instance, providerName, {scope: "scope"});
             expect(providers.provider.getOptions).to.have.callCount(1);
             expect(providers.provider.getOptions).to.have.been.calledWith({
                 url: {},
-                configCollection: {collection: "collection"},
+                configCollection: instance.getServiceConfig(),
                 scope: {scope: "scope"}
             });
         });
@@ -113,14 +109,12 @@ describe("`asteroid-oauth` mixin", function () {
                     },
                     platform: "platform"
                 },
-                collections: {
-                    get: sinon.stub().returns({})
-                },
-                login: sinon.spy()
+                login: sinon.spy(),
+                getServiceConfig: sinon.spy()
             };
-            asteroidOauth.loginWith.call(instance, "provider", {});
+            asteroidOauth.loginWith.call(instance, providerName, {});
             expect(openOauthPopup).to.have.callCount(1);
-            expect(openOauthPopup).to.have.been.calledWithMatch(
+            expect(openOauthPopup).to.have.been.calledWith(
                 "platform",
                 "host",
                 "credentialToken",

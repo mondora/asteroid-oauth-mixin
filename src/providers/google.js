@@ -19,7 +19,7 @@ export function getOptions ({url, configCollection, scope}) {
         *   Meteor currently only supports a `code` response type
         */
         "response_type": "code",
-        "client_id": getOauthClientId(configCollection, "google"),
+        "client_id": getOauthClientId(configCollection),
         "redirect_uri": getOauthProtocol(protocol) + `//${host}/_oauth/google`,
         "state": getOauthState(credentialToken),
         "scope": scope || "openid email"

@@ -1,9 +1,7 @@
-export default function getOauthClientId (configCollection, serviceName) {
-    const serviceConfig = configCollection
-        .find(config => config.get("service") === serviceName);
+export default function getOauthClientId (serviceConfig) {
     return (
-        serviceConfig.get("clientId") ||
-        serviceConfig.get("consumerKey") ||
-        serviceConfig.get("appId")
+        serviceConfig.clientId ||
+        serviceConfig.consumerKey ||
+        serviceConfig.appId
     );
 }

@@ -68,7 +68,7 @@ describe("`google` providers", function () {
             };
             googleOauth.getOptions(options);
             expect(getOauthClientId).to.have.callCount(1);
-            expect(getOauthClientId).to.have.been.calledWith({}, "google");
+            expect(getOauthClientId).to.have.been.calledWith({});
         });
 
         it("should call the `getOauthProtocol` function with the correct parameter", function () {
